@@ -19,7 +19,7 @@
   {
     "id": "1",
     "name": "MATIC",
-    "number_fee": "No Fee",
+    "number_fee": "4% Fee",
     "image_name": "wmatic.svg",
     "pair_image": "none.png",
     "pool_multiplier": "15x",
