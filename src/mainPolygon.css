@@ -4983,10 +4983,10 @@ div.create-lp-content .btn.create {
 
 .network-options-bar .network-selector.index-0::before {
   transform: translateX(0);
-  background-image: url(./UIMain/assets/network-icons/network-bsc-icon.svg)
+  background-image: url(./UIMain/assets/network-icons/network-polygon-icon.svg)
 }
 
 .network-options-bar .network-selector.index-1::before {
   transform: translateX(40px);
-  background-image: url(./UIMain/assets/network-icons/network-polygon-icon.svg)
+  background-image: url(./UIMain/assets/network-icons/network-bsc-icon.svg)
 }

@@ -10,9 +10,9 @@ import { tokenAbi } from "../../Resources/lib/abi";
 import { shortenAddress } from "../../utils/stylish";
 import { Contract, Provider } from "ethcall";
 import { JsonRpcProvider } from "@ethersproject/providers";
-import getRpcUrl from "../../utils/getRpcUrl";
+//import getRpcUrl from "../../utils/getRpcUrl";
 
-const RPC_URL = getRpcUrl();
+const RPC_URL = "https://bsc-dataseed.binance.org/";
 const providerQbert = new JsonRpcProvider(RPC_URL);
 
 const wbnbAddress = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
@@ -238,7 +238,7 @@ const Nav = ({ connected, address, connectWallet, disconnectWallet }) => {
                     <a
                       className="btn primary buy"
                       target="_blank"
-                      href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x6ED390Befbb50f4b492f08Ea0965735906034F81"
+                      href="https://dex.polycrystal.finance/#/swap?outputCurrency"
                     >
                       Buy QBERT
                     </a>
@@ -466,7 +466,7 @@ const Nav = ({ connected, address, connectWallet, disconnectWallet }) => {
                     <a
                       className="btn primary buy"
                       target="_blank"
-                      href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x6ED390Befbb50f4b492f08Ea0965735906034F81"
+                      href="https://dex.polycrystal.finance/#/swap?outputCurrency"
                     >
                       Buy QBERT
                     </a>
@@ -511,31 +511,7 @@ const Nav = ({ connected, address, connectWallet, disconnectWallet }) => {
           </ul>
         </div>
       </div>
-      <div>
-        <button
-          className="wallet-addres"
-          disableElevation
-          onClick={connected ? disconnectWallet : connectWallet}
-        >
-          {connected ? (
-            <>
-              <canvas ref={canvasRef} style={{ display: "none" }} />
-              <Avatar
-                alt="address"
-                src={dataUrl}
-                style={{
-                  width: "24px",
-                  height: "24px",
-                  marginRight: "4px"
-                }}
-              />
-              {shortenAddress(address)}
-            </>
-          ) : (
-            <>{"Vault-Wallet"}</>
-          )}
-        </button>
-      </div>
+      <div></div>
     </header>
   );
 };

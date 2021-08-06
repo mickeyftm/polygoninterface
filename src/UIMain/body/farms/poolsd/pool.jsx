@@ -41,6 +41,7 @@ export default function Pool({
   connected
 }) {
   //var [loaded, setLoaded] = useState(false);
+  const startup = false;
   var [balance, setBalance] = useState(0);
   var [depositState, setDepositState] = useState(0);
   var [withdrawState, setWithdrawState] = useState(0);
@@ -57,6 +58,7 @@ export default function Pool({
 
   const loadPool = async () => {
     window.ts = { value: 0, pending: 0, deposited: 0, added: [] };
+
     web3ext = getWeb3NoAccount();
     let token = new web3ext.eth.Contract(tokenAbi, token_address);
     let pool = new web3ext.eth.Contract(poolAbi, farmAddress);
@@ -73,42 +75,44 @@ export default function Pool({
     var balanced = 0;
     var burnAmount = 0;
     setBalance(balanced);
-    //if (!poolInfo.price) {
-    price = await tokenPrice();
-    //}
-    if (token_address === "0xa6e53f07bD410df069e20Ced725bdC9135146Fe9") {
-      burnAmount = await rcube.methods._getBurnLevy.call().call();
-    }
+    if (startup !== false) {
+      //if (!poolInfo.price) {
+      price = await tokenPrice();
+      //}
+      if (token_address === "0xa6e53f07bD410df069e20Ced725bdC9135146Fe9") {
+        burnAmount = await rcube.methods._getBurnLevy.call().call();
+      }
 
-    balance = await strategy.methods.wantLockedTotal().call();
+      balance = await strategy.methods.wantLockedTotal().call();
 
-    if (poolAddress === "0xB9468Ee4bEf2979615855aB1Eb6718505b1BB756") {
-      //console.log(price);
-    }
-    //let total = (balance / 10 ** decimals) * price;
-    //console.log(burnAmount);
-    if (address) {
-      balanced = await getBalance(token_address, address);
-      setBalance(balanced);
-      //var QBERT_PERBLOCK = await pool.methods.NATIVEPerBlock().call();
-      deposited = await pool.methods.stakedWantTokens(id, address).call();
-      allowance = await token.methods.allowance(address, farmAddress).call();
-      //let pendingBefore = poolInfo.pending;
-      //console.log(pending);
-      pending = await pool.methods.pendingNATIVE(id, address).call();
-    }
-    apr = await calculateApr(pool, balance, price, id, decimals);
-    if (burnAmount > 1) {
-      locked = true;
-    } else {
-      locked = false;
-    }
-    if (!window.ts.added.includes(token_address)) {
-      window.ts.value = window.ts.value + (balance / 10 ** decimals) * price;
-      window.ts.deposited =
-        window.ts.deposited + (deposited / 10 ** decimals) * price;
-      window.ts.pending = window.ts.pending + pending / 10 ** 18;
-      window.ts.added.push(token_address);
+      if (poolAddress === "0xB9468Ee4bEf2979615855aB1Eb6718505b1BB756") {
+        //console.log(price);
+      }
+      //let total = (balance / 10 ** decimals) * price;
+      //console.log(burnAmount);
+      if (address) {
+        balanced = await getBalance(token_address, address);
+        setBalance(balanced);
+        //var QBERT_PERBLOCK = await pool.methods.NATIVEPerBlock().call();
+        deposited = await pool.methods.stakedWantTokens(id, address).call();
+        allowance = await token.methods.allowance(address, farmAddress).call();
+        //let pendingBefore = poolInfo.pending;
+        //console.log(pending);
+        pending = await pool.methods.pendingNATIVE(id, address).call();
+      }
+      apr = await calculateApr(pool, balance, price, id, decimals);
+      if (burnAmount > 1) {
+        locked = true;
+      } else {
+        locked = false;
+      }
+      if (!window.ts.added.includes(token_address)) {
+        window.ts.value = window.ts.value + (balance / 10 ** decimals) * price;
+        window.ts.deposited =
+          window.ts.deposited + (deposited / 10 ** decimals) * price;
+        window.ts.pending = window.ts.pending + pending / 10 ** 18;
+        window.ts.added.push(token_address);
+      }
     }
     setPoolInfo({
       pool,
@@ -282,8 +286,8 @@ export default function Pool({
       </div>
       <div className="info">
         <div className="symbols">
-          <img src={"../images/" + image_name} />
-          <img src={"../images/" + pair_image} />
+          <img src={"../images/polygon/" + image_name} />
+          <img src={"../images/polygon/" + pair_image} />
         </div>
         <div className="pool">
           <div className="ttl">

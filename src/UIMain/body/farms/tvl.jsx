@@ -61,7 +61,7 @@ export default function Tvl() {
   };
 
   useEffect(() => {
-    GetHarvestTimer();
+    //GetHarvestTimer();
 
     const interval = setInterval(() => {
       // do something
