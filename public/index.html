@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="shortcut icon" href="images/mini_logo.png" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Retro Farms</title>
+    <meta
+      name="description"
+      content="Retro Farms is an advanced yield optimizer hosted on Binance Smart Chain (BSC) with Qbert (QBERT), a governance token native to the QBert finance ecosystem."
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=0.86, maximum-scale=0.7"
+    />
+    <meta name="theme-color" content="#030609" />
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=latin-ext"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900|Yellowtail"
+      rel="stylesheet"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-0TYRMFMFLV"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-0TYRMFMFLV");
+    </script>
+  </head>
+
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+  <!--<script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+  ></script>
+  <script type="text/javascript">
+    let canvas = document.querySelector("canvas");
+    let ctx = canvas.getContext("2d");
+
+    canvas.width = document.body.clientWidth;
+    canvas.height = document.body.clientHeight / 4;
+
+    let centerX = canvas.width / 2;
+    let centerY = canvas.height / 2;
+
+    let lineY = 0;
+    let lines = [];
+    let maxLineWidth = 1;
+    let minLineWidth = 1;
+    let spacing = 70;
+    let verticalLines = Math.round(canvas.width / spacing / 2);
+    let speed = 0.4;
+    let accel = 0.0105;
+    let linesCount = 10;
+    let spacingY = Math.floor(canvas.height / linesCount) * 0.7;
+
+    for (let i = 0; i < linesCount; i++) {
+      lines.push({
+        y: i * -spacingY
+      });
+    }
+
+    function update(dt) {
+      let minY = lines[linesCount - 1].y;
+
+      for (let i = 0; i < lines.length; i++) {
+        lines[i].y += speed + Math.max(0, lines[i].y * accel);
+
+        if (lines[i].y < minY) {
+          minY = lines[i].y;
+        }
+
+        if (lines[i].y > canvas.height) {
+          lines[i].y = minY - spacingY;
+          minY = lines[i].y;
+        }
+      }
+    }
+
+    function draw(dt) {
+      requestAnimationFrame(draw);
+      update(dt);
+
+      ctx.fillStyle = "#24241f";
+      ctx.strokeStyle = "#52DDD5";
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.shadowColor = "#52DDD5";
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
+      ctx.shadowBlur = 20;
+
+      ctx.lineWidth = 3.0;
+
+      // middle line
+      ctx.beginPath();
+      ctx.moveTo(centerX, 0);
+      ctx.lineTo(centerX, canvas.height);
+      ctx.stroke();
+
+      for (let i = 1; i <= verticalLines; i++) {
+        ctx.beginPath();
+        ctx.moveTo(centerX - i * spacing, -1);
+        ctx.bezierCurveTo(
+          centerX - i * spacing * 1.5,
+          10,
+          centerX - i * spacing * 2.5,
+          canvas.height,
+          centerX - i * spacing * 2.5,
+          canvas.height
+        );
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(centerX + i * spacing, -1);
+        ctx.bezierCurveTo(
+          centerX + i * spacing * 1.5,
+          10,
+          centerX + i * spacing * 2.5,
+          canvas.height,
+          centerX + i * spacing * 2.5,
+          canvas.height
+        );
+        ctx.stroke();
+      }
+
+      for (let i = lines.length - 1; i >= 0; i--) {
+        if (lines[i].y < 0 || lines[i].y > canvas.height) {
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(0, lines[i].y);
+        ctx.lineWidth = 3.0;
+        minLineWidth +
+          (lines[i].y * (maxLineWidth - minLineWidth)) / canvas.height;
+        ctx.lineTo(canvas.width, lines[i].y);
+        //ctx.bezierCurveTo(
+        //centerX - centerX / 2, lines[i].y + 15,
+        //centerX + centerX / 2, lines[i].y + 15,
+        //canvas.width, lines[i].y);
+        ctx.stroke();
+      }
+    }
+
+    draw();
+  </script>-->
+</html>
