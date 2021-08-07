@@ -7,7 +7,7 @@ const initialState = {
   address: "",
   web3: "",
   connected: false,
-  networkId: 56
+  networkId: 137
 };
 
 export default function reducer(state = initialState, action) {
