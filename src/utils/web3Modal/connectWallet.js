@@ -50,15 +50,18 @@ export function connectWallet(web3Modal) {
         });
       };
       subscribeProvider(provider);
+      
+      let networkId = await web3.eth.getChainId();
+       if (networkId !== 137) {
+        // Trust provider returns an incorrect chainId for BSC.
+        networkId = 137;
+        networkSetup(networkId);
+      }
 
       const accounts = await web3.eth.getAccounts();
       const address = accounts[0];
       window.account = address;
-      let networkId = await web3.eth.getChainId();
-      if (networkId !== 137) {
-        // Trust provider returns an incorrect chainId for BSC.
-        networkId = 137;
-      }
+ 
 
       dispatch({
         type: HOME_CONNECT_WALLET_SUCCESS,
@@ -143,3 +146,47 @@ export function reducer(state, action) {
       return state;
   }
 }
+
+export const networkSettings = {
+  56: {
+    chainId: `0x${parseInt(56, 10).toString(16)}`,
+    chainName: "BSC Mainnet",
+    nativeCurrency: {
+      name: "Binance Coin",
+      symbol: "BNB",
+      decimals: 18
+    },
+    rpcUrls: ["https://bsc-dataseed.binance.org"],
+    blockExplorerUrls: ["https://bscscan.com/"]
+  },
+  137: {
+    chainId: `0x${parseInt(137, 10).toString(16)}`,
+    chainName: "Polygon Mainnet",
+    nativeCurrency: {
+      name: "MATIC",
+      symbol: "MATIC",
+      decimals: 18
+    },
+    rpcUrls: [
+      "https://rpc-mainnet.matic.network",
+      "https://rpc-mainnet.maticvigil.com/",
+      "https://rpc-mainnet.matic.quiknode.pro",
+      "https://matic-mainnet.chainstacklabs.com"
+    ],
+    blockExplorerUrls: ["https://polygonscan.com/"]
+  }
+};
+
+export const networkSetup = (chainId) => {
+  //return new Promise((resolve, reject) => {
+  const provider = window.ethereum;
+  if (provider) {
+    if (networkSettings(chainId)) {
+      provider.request({
+        method: "wallet_addEthereumChain",
+        params: [networkSettings[chainId]]
+      });
+    }
+  }
+};
+
