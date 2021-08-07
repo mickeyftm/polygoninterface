@@ -8,7 +8,7 @@
     "pool_multiplier": "35x",
     "token_address": "0xa6e53f07bD410df069e20Ced725bdC9135146Fe9",
     "decimals": 8,
-    "url": "https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xa6e53f07bD410df069e20Ced725bdC9135146Fe9",
+    "url": "https://dex.polycrystal.finance/#/swap?outputCurrency=",
     "isLP": false,
     "poolAddress": "0x5Cd360D063Ab1B1c7b63cFc1D9c2690D1bd4d50F",
     "price": {
@@ -25,7 +25,7 @@
     "pool_multiplier": "8x",
     "token_address": "0x6ED390Befbb50f4b492f08Ea0965735906034F81",
     "decimals": 18,
-    "url": "https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x6ED390Befbb50f4b492f08Ea0965735906034F81",
+    "url": "https://dex.polycrystal.finance/#/swap?outputCurrency=",
     "isLP": false,
     "poolAddress": "0x34B50EA0f1598b29aC4CA3C96b963d8e9Da616E1",
     "price": {
@@ -42,7 +42,7 @@
     "pool_multiplier": "4x",
     "token_address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
     "decimals": 18,
-    "url": "https://exchange.pancakeswap.finance/#/swap",
+    "url": "https://dex.polycrystal.finance/#/swap?outputCurrency=",
     "isLP": false,
     "isBNB": true,
     "poolAddress": "0x88fbC202e8B79EEbaB497AAa8d190857Ae55367B",
@@ -61,7 +61,7 @@
     "token_address": "0x9ed8c81309d5b495e52778aac76880cf105e4fed",
     "decimals": 18,
     "tokenDecimals": 18,
-    "url": "https://exchange.pancakeswap.finance/#/add/0x6ED390Befbb50f4b492f08Ea0965735906034F81/0xa6e53f07bD410df069e20Ced725bdC9135146Fe9",
+    "url": "https://dex.polycrystal.finance/#/swap?outputCurrency=",
     "isLP": true,
     "poolAddress": "0xe3646Ef0D93438eb087EB3087D0cf535880d7BC1",
     "price": {
@@ -80,7 +80,7 @@
     "token_address": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
     "decimals": 18,
     "tokenDecimals": 8,
-    "url": "https://exchange.pancakeswap.finance/#/add/BNB/0xa6e53f07bD410df069e20Ced725bdC9135146Fe9",
+    "url": "https://dex.polycrystal.finance/#/swap?outputCurrency=",
     "isLP": true,
     "poolAddress": "0xbfaC6d05D98f94980B08E856C072E46E01C148B6",
     "price": {
@@ -99,7 +99,7 @@
     "token_address": "0x6d45a9c8f812dcbb800b7ac186f1ed0c055e218f",
     "decimals": 18,
     "tokenDecimals": 18,
-    "url": "https://exchange.pancakeswap.finance/#/add/BNB/0x6ED390Befbb50f4b492f08Ea0965735906034F81",
+    "url": "https://dex.polycrystal.finance/#/swap?outputCurrency=",
     "isLP": true,
     "poolAddress": "0xF9a424B1C6b525818ed7e5AC293331D2a40F1b48",
     "price": {
