@@ -2,7 +2,7 @@ import Web3Modal from "web3modal";
 import { providerOptions } from "../../utils/web3Modal/getNetworks";
 
 export const createweb3Modal = new Web3Modal({
-  network: "binance", // optional or "binance"
+  network: "polygon", // optional or "binance"
   cacheProvider: false, // optional
   providerOptions, // required
   disableInjectedProvider: false,
