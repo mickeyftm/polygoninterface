@@ -21,8 +21,8 @@ export const providerOptions = {
     package: WalletConnectProvider,
     options: {
       rpc: {
-        1: "https://bsc-dataseed.binance.org/",
-        56: "https://bsc-dataseed.binance.org/"
+        1: "https://rpc-mainnet.matic.network/",
+        56: "https://rpc-mainnet.matic.network/"
       }
     }
   },
