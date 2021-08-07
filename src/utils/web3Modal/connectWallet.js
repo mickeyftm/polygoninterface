@@ -180,11 +180,11 @@ export const networkSetup = (chainId) => {
   //return new Promise((resolve, reject) => {
   const provider = window.ethereum;
   if (provider) {
-    if (networkSettings(chainId)) {
-      provider.request({
-        method: "wallet_addEthereumChain",
-        params: [networkSettings[chainId]]
-      });
-    }
+    //if (networkSettings(chainId)) {
+    provider.request({
+      method: "wallet_addEthereumChain",
+      params: [networkSettings[chainId]]
+    });
   }
+  //}
 };
